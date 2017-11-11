@@ -1,0 +1,29 @@
+# Mod_Autoindex
+<IfModule mod_autoindex.c>
+    # Disable Indexes
+    Options -Indexes
+    IndexIgnore */*
+</IfModule>
+
+# Mod_Rewrite
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    # Enable mod_rewrite
+    RewriteEngine On
+    
+    #Send all /backend requests to backend/web folder
+    RewriteRule ^backend(.*)$ backend/web/$1 [L]
+
+    #Send all /swagger requests to frontend/web
+    RewriteRule ^swagger(.*)$ api/web/swagger$1 [L]
+    #Enable GII
+    RewriteRule ^gii(.*)$ frontend/web/$1 [L]
+
+    RewriteRule ^assets(.*)$ frontend/web/assets/$1 [L]
+
+    #Send all /api requests to api/web folder
+    RewriteRule ^api(.*)$ api/web/$1 [L]
+    RewriteRule ^(.*)$ api/web/swagger$1  [L]
+
+</IfModule>
+

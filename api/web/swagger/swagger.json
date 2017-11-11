@@ -1,0 +1,232 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API for PROJECT_NAME project.",
+    "version": "1.0.0",
+    "title": "PROJECT_NAME API"
+  },
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "user",
+      "description": "user entity"
+    },
+    {
+      "name": "meeting",
+      "description": "conference room meeting entity"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create a new user (registration)",
+        "operationId": "user-create",
+        "consumes": [
+          "application/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "username",
+            "type": "string",
+            "required": true,
+            "description": "Minimum 2, maximum 255 characters"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true,
+            "description": "Minimum 6 characters"
+          },
+          {
+            "in": "formData",
+            "name": "confirmPassword",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "success"
+          },
+          "422": {
+            "description": "invalid request data"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user collection",
+        "operationId": "user-create",
+        "consumes": [
+          "application/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "User authorization (login)",
+        "operationId": "user-login",
+        "consumes": [
+          "application/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "username",
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          {
+            "in": "header",
+            "name": "x-device-token",
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          {
+            "in": "header",
+            "name": "x-device-type",
+            "type": "string",
+            "enum": [
+              "ios",
+              "android"
+            ],
+            "required": true,
+            "description": "Type of mobile device"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "422": {
+            "description": "invalid request data"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logout user",
+        "operationId": "user-logout",
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/meeting": {
+      "post": {
+        "tags": [
+          "meeting"
+        ],
+        "summary": "Create meeting",
+        "operationId": "create-meeting",
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          {
+            "in": "formData",
+            "name": "start",
+            "type": "integer",
+            "required": true,
+            "description": "2011-10-02T23:25:42Z (ISO 8601)"
+          },
+          {
+            "in": "formData",
+            "name": "end",
+            "type": "integer",
+            "required": true,
+            "description": "2011-10-02T23:25:42Z (ISO 8601)"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "meeting"
+        ],
+        "summary": "Get meeting list",
+        "operationId": "get-meeting",
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "definitions": {}
+}
