@@ -5,8 +5,8 @@ docker-compose up -d
 ```
 
 ````
+docker-compose exec web php ./init  --env=Development --overwrite=y
 docker-compose exec web composer install
-docker-compose exec web php init
 ````
 
 environment

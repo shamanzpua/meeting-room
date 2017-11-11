@@ -16,13 +16,13 @@ return [
         ],
         'redis' => [
             'class' => '\yii\redis\Connection',
-            'hostname' => 'redis',
-            'port' => 6379,
-            'database' => 0,
+            'hostname' => getenv('REDIS_CONTAINER'),
+            'port' => getenv('REDIS_PORT'),//6379,
+            'database' => getenv('REDIS_DATABASE'),//0,
         ],
         'mongodb' => [
             'class' => 'yii\mongodb\Connection',
-            'dsn' => 'mongodb://@mongo:27017/test_db',
+            'dsn' => 'mongodb://@'.getenv('MONGO_CONTAINER').':'.getenv('MONGO_PORT').'/'. getenv('MONGO_DATABASE'), //test_db
             'options' => [
                 "username" => getenv('MONGO_USER'),
                 "password" => getenv('MONGO_PASSWORD')
